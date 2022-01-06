@@ -1,0 +1,53 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=null;
+        right=null;
+    }
+}
+public class Tree
+{
+    Node root;
+    int maxLevel_left=0;
+    int maxLevel_right=0;
+    void leftView(Node node,int level)
+    {
+        if(node==null)
+          return;
+        if(maxLevel_left<level)
+        {
+            System.out.print(node.data+" ");
+            maxLevel_left=level;
+        }
+        leftView(node.left,level+1);
+        leftView(node.right,level+1);
+    }
+    void rightView(Node node,int level)
+    {
+        if(node==null)
+          return;
+        if(maxLevel_right<level)
+        {
+            System.out.print(node.data+" ");
+            maxLevel_right=level;
+        }
+        rightView(node.right,level+1);
+        rightView(node.left,level+1);
+    }
+    public static void main(String args[])
+    {
+        Tree tree=new Tree();
+        tree.root=new Node(1);
+        tree.root.left=new Node(2);
+        tree.root.right=new Node(3);
+        tree.root.right.left=new Node(4);
+        tree.leftView(tree.root,1);
+        System.out.println();
+        tree.rightView(tree.root,1);
+    }
+}
