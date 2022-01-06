@@ -1,0 +1,48 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=null;
+        right=null;
+    }
+}
+public class Tree
+{
+    Node root;
+    int findMaxWidth(Node node)
+    {
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        int maxWidth=0;
+        while(!q.isEmpty())
+        {
+            int count=q.size();
+            maxWidth=Math.max(maxWidth,count);
+            while(count>0)
+            {
+                Node temp=q.poll();
+                if(temp.left!=null)
+                  q.add(temp.left);
+                if(temp.right!=null)
+                  q.add(temp.right);
+                count--;
+            }
+        }
+        return maxWidth;
+    }
+    public static void main(String args[])
+    {
+        Tree tree=new Tree();
+        tree.root=new Node(1);
+        tree.root.left=new Node(2);
+        tree.root.right=new Node(3);
+        tree.root.left.left=new Node(4);
+        tree.root.left.right=new Node(5);
+        tree.root.right.left=new Node(6);
+        System.out.println(tree.findMaxWidth(tree.root));
+    }
+}
