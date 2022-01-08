@@ -1,0 +1,52 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=null;
+        right=null;
+    }
+}
+public class Tree
+{
+    Node root;
+    int height(Node node)
+    {
+        if(node==null)
+          return 0;
+        int lh=height(node.left);
+        if(lh==-1)
+          return -1;
+        int rh=height(node.right);
+        if(rh==-1)
+           return -1;
+        if(Math.abs(lh-rh)>1)
+           return -1;
+        return Math.max(lh,rh)+1;
+    }
+    public static void main(String args[])
+    {
+        Tree tree=new Tree();
+        tree.root=new Node(9);
+        tree.root.left=new Node(7);
+        //tree.root.right=new Node(3);
+        tree.root.left.left=new Node(8);
+        tree.root.left.right=new Node(10);
+        tree.root.left.left.right=new Node(6);
+        tree.root.left.left.right.left=new Node(6);
+        tree.root.left.left.right.right=new Node(10);
+        //tree.root.right.right=new Node(6);
+        //tree.root.right.right.right=new Node(7);
+        tree.root.left.right.left=new Node(4);
+        tree.root.left.right.left.right=new Node(8);
+        int x=tree.height(tree.root);
+        if(x!=-1)
+            System.out.println("Balanced");
+        else
+            System.out.println("UnBalanced");
+        //System.out.println(x);
+    }
+}
