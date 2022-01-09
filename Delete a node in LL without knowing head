@@ -1,0 +1,51 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+    }
+}
+public class LinkedList
+{
+    static Node head1;
+    static Node head2;
+    static void delete(Node node)
+    {
+        if(node.next==null)
+          node=null;
+        else
+        {
+          node.data=node.next.data;
+          node.next=node.next.next;
+        }
+    }
+    static void printLL(Node temp)
+    {
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n1=sc.nextInt();
+        head1=new Node(sc.nextInt());
+        Node temp=head1;
+        for(int i=1;i<n1;i++)
+        {
+            temp.next=new Node(sc.nextInt());
+            temp=temp.next;
+        }
+        printLL(head1);
+        delete(head1.next);
+        System.out.println("After deleting:");
+        printLL(head1);
+    }
+}
