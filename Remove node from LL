@@ -1,0 +1,60 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+    }
+}
+public class LinkedList
+{
+    static Node head;
+    static Node remove(Node node,int k)
+    {
+        int i=1;
+        Node temp=node;
+        Node prev=null;
+        while(temp!=null)
+        {
+            if(i==k)
+            {
+                prev.next=temp.next;   
+                break;
+            }
+            prev=temp;
+            temp=temp.next;
+            i++;
+        }
+        return node;
+    }
+    static void printLL(Node temp)
+    {
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        head=new Node(sc.nextInt());
+        Node temp=head;
+        for(int i=1;i<n;i++)
+        {
+            temp.next=new Node(sc.nextInt());
+            temp=temp.next;
+        }
+        System.out.println("Before removing:");
+        printLL(head);
+        temp=remove(head,k);
+        System.out.println("After removing:");
+        printLL(temp);
+    }
+}
