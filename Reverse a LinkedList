@@ -1,0 +1,55 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+    }
+}
+public class LinkedList
+{
+    static Node head;
+    static Node reverse(Node node)
+    {
+        Node temp=null;
+        Node prev=null;
+        Node curr=node;
+        while(curr!=null)
+        {
+            temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
+    }
+    static void printLL(Node temp)
+    {
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        head=new Node(sc.nextInt());
+        Node temp=head;
+        for(int i=1;i<n;i++)
+        {
+            temp.next=new Node(sc.nextInt());
+            temp=temp.next;
+        }
+        System.out.println("Before reversing:");
+        printLL(head);
+        temp=reverse(head);
+        System.out.println("After reversing:");
+        printLL(temp);
+    }
+}
