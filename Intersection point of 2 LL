@@ -19,8 +19,6 @@ public class MyClass
         Node l2=head2;
         while(l1!=l2)
         {
-            if(l1==null && l2==null)
-              return null;
             if(l1==null)
                l1=head2;
             else
