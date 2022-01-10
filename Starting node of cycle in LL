@@ -1,0 +1,61 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+    }
+}
+public class MyClass
+{
+    static Node head;
+    static Node detectCycle(Node head)
+    {
+        Node fast=head;
+        Node slow=head;
+        Node temp=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+            if(fast==slow)
+            {
+              while(temp!=slow)
+              {
+                  temp=temp.next;
+                  slow=slow.next;
+              }
+              return slow;
+            }
+        }
+        return null;
+    }
+    static void printLL(Node temp)
+    {
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        head=new Node(sc.nextInt());
+        Node temp=head;
+        for(int i=1;i<n;i++)
+        {
+            temp.next=new Node(sc.nextInt());
+            temp=temp.next;
+        }
+        temp.next=head.next;
+        //System.out.println("Linked List-1:");
+        //printLL(head);
+        System.out.println("Cycle Detected : " + detectCycle(head).data);
+    }
+}
