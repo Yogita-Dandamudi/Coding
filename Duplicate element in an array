@@ -1,0 +1,21 @@
+public class MyClass
+{
+    public static void main(String args[])
+    {
+        int[] arr={1,2,3,3,4,5,3,0,3};
+        int slow=arr[0];
+        int fast=arr[0];
+        do
+        {
+            slow=arr[slow];
+            fast=arr[arr[fast]];
+        }while(slow!=fast);
+        int entry=arr[0];
+        while(slow!=entry)
+        {
+            slow=arr[slow];
+            entry=arr[entry];
+        }
+        System.out.println("Duplicate element is:"+slow);
+    }
+}
