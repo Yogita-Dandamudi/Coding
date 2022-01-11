@@ -1,0 +1,63 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+    }
+}
+public class LinkedList
+{
+    static Node head;
+    static Node rotate(Node head,int k)
+    {
+        Node temp=head;
+        int len=1;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+            len++;
+        }
+        if(k>len)
+          k=k%len;
+        if(k==len || k==0)
+          return head;
+        temp.next=head;
+        Node curr=head;
+        for(int i=0;i<len-k-1;i++)
+          curr=curr.next;
+        head=curr.next;
+        curr.next=null;
+        return head;
+    }
+    static void printLL(Node head)
+    {
+        while(head!=null)
+        {
+            System.out.print(head.data+" ");
+            head=head.next;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        head=new Node(sc.nextInt());
+        Node temp=head;
+        for(int i=1;i<n;i++)
+        {
+            temp.next=new Node(sc.nextInt());
+            temp=temp.next;
+        }
+        System.out.println("Linked List:");
+        printLL(head);
+        System.out.println("After rotation : ");
+        temp=rotate(head,k);
+        printLL(temp);
+    }
+}
