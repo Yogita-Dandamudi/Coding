@@ -1,0 +1,81 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node bottom;
+    Node(int data)
+    {
+        this.data=data;
+        next=null;
+        bottom=null;
+    }
+}
+public class LinkedList
+{
+    static Node head;
+    static Node merge(Node head1,Node head2)
+    {
+        Node l1=head1,l2=head2;
+        Node res=new Node(0);
+        Node temp=res;
+        while(l1!=null && l2!=null)
+        {
+            if(l1.data<=l2.data)
+            {
+                temp.bottom=l1;
+                temp=temp.bottom;
+                l1=l1.bottom;
+            }
+            else
+            {
+                temp.bottom=l2;
+                temp=temp.bottom;
+                l2=l2.bottom;
+            }
+        }
+        if(l1!=null)
+           temp.bottom=l1;
+        else
+           temp.bottom=l2;
+        return res.bottom;
+    }
+    
+    static Node flatten(Node head)
+    {
+        if(head.next==null || head==null)
+          return head;
+        head.next=flatten(head.next);
+        head=merge(head,head.next);
+        return head;
+    }
+    
+    static void printLL(Node temp)
+    {
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"-->");
+            temp=temp.bottom;
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        head=new Node(5);
+        head.next=new Node(10);
+        head.next.next=new Node(19);
+        head.next.next.next=new Node(28);
+        head.bottom=new Node(7);
+        head.bottom.bottom=new Node(8);
+        head.bottom.bottom.bottom=new Node(30);
+        head.next.bottom=new Node(20);
+        head.next.next.bottom=new Node(22);
+        head.next.next.bottom.bottom=new Node(50);
+        head.next.next.next.bottom=new Node(35);
+        head.next.next.next.bottom.bottom=new Node(40);
+        head.next.next.next.bottom.bottom.bottom=new Node(75);
+        Node temp=flatten(head);
+        System.out.println("After flattening:");
+        printLL(temp);
+    }
+}
