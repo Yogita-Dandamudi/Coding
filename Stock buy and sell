@@ -1,0 +1,10 @@
+ls=[7,1,5,3,6,4]
+mini=ls[0]
+profit=0
+for i in range(len(ls)):
+    if ls[i]<mini:
+        mini=ls[i]
+    #print(mini,ls[i])
+    if ls[i]-mini>profit:
+        profit=ls[i]-mini
+print(profit)
