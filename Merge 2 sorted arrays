@@ -1,0 +1,19 @@
+#Gap algorithm
+import math
+ls1=[1,4,7,8,10]
+ls2=[2,3,9]
+ls1.extend(ls2)
+gap=math.ceil(len(ls1)/2)
+i=0
+while i<len(ls1)-gap and gap>0:
+    if ls1[i]>ls1[i+gap]:
+        ls1[i],ls1[i+gap]=ls1[i+gap],ls1[i]
+    i+=1
+    if i==len(ls1)-gap :
+        i=0
+        if gap!=1:
+            gap=math.ceil(gap/2)
+        else:
+            gap=0
+print(ls1)
+    
