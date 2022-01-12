@@ -1,0 +1,22 @@
+ls=[1,2,3]
+flag=False
+for i in range(len(ls)-2,-1,-1):
+    if ls[i]<ls[i+1]:
+        #print(ls[i],ls[i+1])
+        ind1=i
+        flag=True
+        break
+if flag==True:
+    for i in range(len(ls)-1,-1,-1):
+        if ls[i]>ls[ind1]:
+            ind2=i
+            #print(ls[ind1],ls[ind2])
+            ls[ind1],ls[ind2]=ls[ind2],ls[ind1]
+            break
+    ls1=[]
+    ls1.extend(ls[0:ind1+1])
+    ls1.extend(ls[ind1+1:][::-1])
+    print(ls1)
+else:
+    ls.sort()
+    print(ls)
