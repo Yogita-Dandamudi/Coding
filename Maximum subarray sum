@@ -1,0 +1,16 @@
+ls=[-2, -3, 4, -1, -2, 1, 5, -3]
+m=ls[0]
+sum1=0
+s=0
+start=0
+end=0
+for i in range(0,len(ls)):
+    sum1+=ls[i]
+    if sum1>m:
+        m=sum1
+        start=s
+        end=i
+    if sum1<0:
+        sum1=0
+        s=i+1
+print(ls[start:end+1],m)
