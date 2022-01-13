@@ -1,7 +1,7 @@
 def sum2(ls,tr):
     d={}
     for i in range(len(ls)):
-        if tr-ls[i] in d:
+        if d.get(tr-ls[i]):
             return [d[tr-ls[i]],i]
         else:
             d[ls[i]]=i
