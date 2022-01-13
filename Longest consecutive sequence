@@ -1,0 +1,20 @@
+ls=[102,4,100,1,101,3,2,99,98]
+res=ls[0]
+count=1
+s=set(ls)
+for i in range(0,len(ls)):
+    if ls[i]-1 in s:
+        continue
+    else:
+        c=1
+        temp=ls[i]
+        while temp+1 in s:
+            c+=1
+            temp+=1
+        if c>count:
+            count=c
+            res=ls[i]
+print(count)
+for i in range(0,count):
+    print(res,end=" ")
+    res+=1
