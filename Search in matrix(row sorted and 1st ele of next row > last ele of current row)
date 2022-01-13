@@ -1,0 +1,22 @@
+def binarySearch(ls,tr,col,low,high):
+    if low<=high:
+        mid=(low+high)//2
+        i=mid//col
+        j=mid%col
+        if ls[i][j]==tr:
+            return [i,j]
+        elif tr<ls[i][j]:
+            return binarySearch(ls,tr,col,low,mid-1)
+        else:
+            return binarySearch(ls,tr,col,mid+1,high)
+    return [-1,-1]
+
+ls=[[1,3,5,7],[10,11,16,20],[23,30,34,50]]
+tr=34
+col=len(ls[0])
+low=0
+high=len(ls)*len(ls[0])
+print(binarySearch(ls,tr,col,low,high-1))
+
+
+    
