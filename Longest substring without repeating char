@@ -1,0 +1,18 @@
+def longetsSubstring(ls):
+    count=0
+    l=0
+    r=0
+    d={}
+    n=len(ls)
+    while r<n:
+        if ls[r] in d:
+            l = max(d[ls[r]] + 1, l)
+        d[ls[r]]=r
+        count = max(count, r - l + 1);
+        r+=1
+    return count
+    
+ls=['a','b','c','a','a','b','c','d','b','a']
+print(longetsSubstring(ls))
+            
+        
