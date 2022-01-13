@@ -1,0 +1,14 @@
+def power(x,n):
+    ans=1
+    n1=abs(n)
+    while n1>0:
+        if n1%2==0:
+            x=x*x
+            n1=n1/2
+        else:
+            ans=ans*x
+            n1=n1-1
+    if n>=0:
+        return ans
+    return 1/ans
+print(power(2,-1))
