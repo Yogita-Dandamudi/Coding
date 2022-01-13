@@ -1,0 +1,12 @@
+def sum2(ls,tr):
+    d={}
+    for i in range(len(ls)):
+        if tr-ls[i] in d:
+            return [d[tr-ls[i]],i]
+        else:
+            d[ls[i]]=i
+    return [-1,-1]
+
+ls=[2,6,5,8,10]
+tr=11
+print(sum2(ls,tr))
