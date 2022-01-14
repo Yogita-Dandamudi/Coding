@@ -1,0 +1,58 @@
+import java.util.*;
+public class Graph
+{
+    static void addEdge(ArrayList<ArrayList<Integer>> adj,int u,int v)
+    {
+        adj.get(u).add(v);
+        //adj.get(v).add(u);
+    }
+    static void printGraph(ArrayList<ArrayList<Integer>> adj)
+    {
+        for(int i=0;i<adj.size();i++)
+        {
+            System.out.print(i+" : ");
+            for(int j=0;j<adj.get(i).size();j++)
+                System.out.print(adj.get(i).get(j)+"->");
+            System.out.println();
+        }
+    }
+    static void dfs(int vertex,Stack<Integer> st,ArrayList<ArrayList<Integer>> adj,int[] vis)
+    {
+        vis[vertex]=1;
+        for(int i=0;i<adj.get(vertex).size();i++)
+        {
+            int x=adj.get(vertex).get(i);
+            if(vis[x]==0)
+              dfs(x,st,adj,vis);
+        }
+        st.push(vertex);
+    }
+    static Stack<Integer> topologicalSort(int vertex,ArrayList<ArrayList<Integer>> adj,int V)
+    {
+        Stack<Integer> st=new Stack<>();
+        int[] vis=new int[V+1];
+        for(int i=0;i<V+1;i++)
+        {
+            if(vis[i]==0)
+              dfs(i,st,adj,vis);
+        }
+        return st;
+    }
+    public static void main(String args[])
+    {
+        int V=5;
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<>(V);
+        for(int i=0;i<V+1;i++)
+          adj.add(new ArrayList<Integer>());
+        addEdge(adj, 2, 3);
+        addEdge(adj, 3, 1);
+        addEdge(adj, 4, 1);
+        addEdge(adj, 4, 0);
+        addEdge(adj, 5, 0);
+        addEdge(adj, 5, 2);
+        printGraph(adj);
+        Stack<Integer> st=topologicalSort(0,adj,V);
+        while(!st.isEmpty())
+            System.out.print(st.pop()+" ");
+    }
+}
