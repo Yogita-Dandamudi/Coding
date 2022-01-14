@@ -16,11 +16,13 @@ public class Graph
             System.out.println();
         }
     }
-    static ArrayList<Integer> bfsOfGraph(int vertex,ArrayList<ArrayList<Integer>> adj,ArrayList<Integer> vis)
+    static ArrayList<Integer> bfsOfGraph(int vertex,ArrayList<ArrayList<Integer>> adj,int V)
     {
         Queue<Integer> q=new LinkedList<>();
+        int[] vis=new int[V+1];
+        Arrays.fill(vis,0);
         q.add(vertex);
-        vis.set(vertex,1);
+        vis[vertex]=1;
         ArrayList<Integer> res=new ArrayList<>();
         while(!q.isEmpty())
         {
@@ -29,9 +31,9 @@ public class Graph
             for(int i=0;i<adj.get(node).size();i++)
             {
                 int x=adj.get(node).get(i);
-                if(vis.get(x)==0)
+                if(vis[x]==0)
                 {
-                    vis.set(x,1);
+                    vis[x]=1;
                     q.add(x);
                 }
             }
@@ -50,9 +52,6 @@ public class Graph
         addEdge(adj, 3, 5);
         addEdge(adj, 4, 5);
         printGraph(adj);
-        ArrayList<Integer> vis=new ArrayList<>(V+1);
-        for(int i=0;i<V+1;i++)
-          vis.add(0);
-        System.out.println(bfsOfGraph(1,adj,vis));
+        System.out.println(bfsOfGraph(1,adj,V));
     }
 }
