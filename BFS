@@ -53,10 +53,6 @@ public class Graph
         ArrayList<Integer> vis=new ArrayList<>(V+1);
         for(int i=0;i<V+1;i++)
           vis.add(0);
-        for(int i=1;i<=V;i++)
-        {
-            if(vis.get(i)==0)
-              System.out.println(bfsOfGraph(i,adj,vis));
-        }
+        System.out.println(bfsOfGraph(1,adj,vis));
     }
 }
