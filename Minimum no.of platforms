@@ -1,0 +1,22 @@
+def minPlatoforms(arrival,dept):
+    maxi=0
+    plat=0
+    start=0
+    end=0
+    while start<len(arrival):
+        if arrival[start]<=dept[end]:
+            plat+=1
+            start+=1
+        else:
+            plat-=1
+            end+=1
+        maxi=max(plat,maxi)
+    return maxi
+
+arrival=[120,50,550,200,700,850]
+dept=[600,550,700,500,900,1000]
+arrival.sort()
+dept.sort()
+print(arrival)
+print(dept)
+print(minPlatoforms(arrival,dept))
