@@ -1,0 +1,14 @@
+arr=[[1,2],[4,5],[6,7]]
+row=len(arr)
+col=len(arr[0])
+N=row*col
+mid=N//2
+i=mid//col
+j=mid%col
+if N%2!=0:
+    print(arr[i][j])
+else:
+    if j-1>=0:
+        print((arr[i][j-1]+arr[i][j])/2)
+    else:
+        print((arr[i-1][j-1]+arr[i][j])/2)
