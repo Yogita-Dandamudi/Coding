@@ -1,0 +1,78 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=null;
+        right=null;
+    }
+}
+public class Tree
+{
+    Node root;
+    int findMaxWidth(Node node)
+    {
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        int maxWidth=0;
+        while(!q.isEmpty())
+        {
+            int count=q.size();
+            maxWidth=Math.max(maxWidth,count);
+            boolean allNull=true;
+            while(count>0)
+            {
+                Node temp=q.poll();
+                if(temp.left==null && temp.right==null)
+                {
+                    temp.left=new Node(-1);
+                    temp.right=new Node(-1);
+                    q.add(temp.left);
+                    q.add(temp.right);
+                }
+                else
+                {
+                    if(temp.left!=null)
+                    {
+                      q.add(temp.left);
+                      allNull=false;
+                    }
+                    if(temp.right!=null)
+                    {
+                        if(temp.left==null)
+                        {
+                          temp.left=new Node(-1);
+                          q.add(temp.left);
+                        }
+                        q.add(temp.right);
+                        allNull=false;
+                    }
+                }
+                count--;
+            }
+            if(allNull==true) 
+              break;
+        }
+        return maxWidth;
+    }
+    public static void main(String args[])
+    {
+        Tree tree=new Tree();
+        tree.root=new Node(1);
+        tree.root.left=new Node(2);
+        tree.root.right=new Node(3);
+        tree.root.left.left=new Node(4);
+        tree.root.left.right=new Node(5);
+        tree.root.right.right=new Node(7);
+        tree.root.left.left.left=new Node(8);
+        tree.root.left.left.right=new Node(9);
+        tree.root.left.right.left=new Node(10);
+        tree.root.left.right.right=new Node(11);
+        tree.root.right.right.right=new Node(12);
+        //tree.root.right.right.right.right=new Node(13);
+        System.out.println(tree.findMaxWidth(tree.root));
+    }
+}
