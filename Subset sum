@@ -1,0 +1,12 @@
+def subsetSum(ind,s,arr,res):
+    if ind==len(arr):
+        res.append(s)
+        return
+    subsetSum(ind+1,s+arr[ind],arr,res)
+    subsetSum(ind+1,s,arr,res)
+    return res
+    
+arr=[3,1,2]
+res=subsetSum(0,0,arr,[])
+res.sort(reverse=True)
+print(res)
