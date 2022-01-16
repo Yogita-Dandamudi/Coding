@@ -1,0 +1,43 @@
+def maxRectangle(ls):
+    stack=[]
+    n=len(ls)
+    maxi=0
+    area=0
+    i=0
+    while i<n+1:
+        maxi=max(maxi,area)
+        if len(stack)==0:
+            stack.append(i)
+            i+=1
+        else:
+            if i==n:
+                length=ls[stack[-1]]
+                del stack[-1]
+                if len(stack)==0:
+                    lmin=0
+                else:
+                    lmin=ls[stack[-1]]
+                rmin=i
+                if lmin==0:
+                    area=rmin*length
+                else:
+                    area=(rmin-lmin-1)*length
+            elif ls[stack[-1]]>ls[i]:
+                length=ls[stack[-1]]
+                del stack[-1]
+                if len(stack)==0:
+                    lmin=0
+                else:
+                    lmin=ls[stack[-1]]
+                rmin=i
+                if lmin==0:
+                    area=rmin*length
+                else:
+                    area=(rmin-lmin-1)*length
+            else:
+                stack.append(i)
+                i+=1
+    return maxi
+
+ls=[1,4,2,3]
+print(maxRectangle(ls))
