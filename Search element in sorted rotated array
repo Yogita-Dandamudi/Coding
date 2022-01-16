@@ -1,0 +1,21 @@
+def search(a,tr):
+    low=0
+    high=len(a)-1
+    while low<=high:
+        mid=(low+high)//2
+        if a[mid]==tr:
+            return mid
+        if a[low]<=a[mid]:
+            if tr<a[mid] and tr>=a[low]:
+                high=mid-1
+            else:
+                low=mid+1
+        else:
+            if tr>a[mid] and tr<=a[high]:
+                low=mid+1
+            else:
+                high=mid-1
+    return -1
+
+ls=[4,5,6,7,0,1,2]
+print(search(ls,5))
