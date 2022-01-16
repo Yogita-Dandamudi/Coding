@@ -1,0 +1,22 @@
+def longestPalindrome(s):
+    maxi=1
+    dp=[]
+    res=''
+    for i in range(len(s)):
+        dp.append([0]*len(s))
+        dp[i][i]=1
+        if i+1<len(s) and s[i]==s[i+1]:
+            dp[i][i+1]=1
+            maxi=2
+    c=2
+    for i in range(len(s)):
+        for j in range(len(s)-c):
+            if s[j]==s[j+c] and dp[j+1][j+c-1]==1:
+                dp[j][j+c]=1
+                res=s[j:j+c+1]
+                maxi=max(maxi,(c+1))
+        c+=1
+    return [maxi,res]
+    
+s='aaaabbaa'
+print(longestPalindrome(s))
