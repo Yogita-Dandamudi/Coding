@@ -1,0 +1,41 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=null;
+        right=null;
+    }
+}
+public class Tree
+{
+    Node root;
+    Node lca(Node node,int p,int q)
+    {
+        if(node==null || node.data==p || node.data==q)
+           return node;
+        Node left=lca(node.left,p,q);
+        Node right=lca(node.right,p,q);
+        if(left==null)
+          return right;
+        else if(right==null)
+          return left;
+        else
+          return node;
+    }
+    public static void main(String args[])
+    {
+        Tree tree=new Tree();
+        tree.root=new Node(1);
+        tree.root.left=new Node(2);
+        tree.root.right=new Node(3);
+        tree.root.left.left=new Node(4);
+        tree.root.left.right=new Node(5);
+        tree.root.left.right.left=new Node(6);
+        tree.root.left.right.right=new Node(7);
+        System.out.println(tree.lca(tree.root,4,7).data);
+    }
+}
