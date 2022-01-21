@@ -1,0 +1,32 @@
+public static int isSumProperty(Node node)
+    {
+        // add your code here
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        //HashMap<Integer,ArrayList<Integer>> hm=new HashMap<>();
+        int sum;
+        while(!q.isEmpty())
+        {
+            Node temp=q.poll();
+            //hm.put(temp.data,new ArrayList<Integer>);
+            sum=0;
+            if(temp.left==null && temp.right==null)
+              break;
+            if(temp.left!=null)
+            {
+                q.add(temp.left);
+                //hm.get(temp.data).add(temp.left.data);
+                sum+=temp.left.data;
+            }
+            if(temp.right!=null)
+            {
+                q.add(temp.right);
+                //hm.get(temp.data).add(temp.right.data);
+                sum+=temp.right.data;
+            }
+            if(sum!=temp.data)
+              return 0;
+        }
+        return 1;
+        
+    }
