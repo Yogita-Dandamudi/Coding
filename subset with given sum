@@ -1,0 +1,13 @@
+def isSubsetSum(ls, n, s):
+    if s == 0:
+        return True
+    if n==0:
+        return False
+    if ls[n-1] > s:
+        return isSubsetSum(ls, n-1, s)
+    return isSubsetSum(ls, n-1, s) or isSubsetSum(ls, n-1, s-ls[n-1])
+
+ls = [3, 34, 4, 12, 5, 2]
+s = 9
+n = len(ls)
+print(isSubsetSum(ls, n, s))
