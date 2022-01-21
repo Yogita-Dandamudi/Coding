@@ -1,6 +1,14 @@
-        ls=[]
-        for i in range(0,numRows):
-            ls.append([0]*(i+1))
-            for j in range(len(ls)):
-                ls[i][j]=factorial(i)//(factorial(j)*factorial(i-j))
-        return ls
+res=[]
+pre=[]
+n=5
+for i in range(n):
+    row=[]
+    for j in range(i+1):
+        if j==0 or j==i:
+            row.append(1)
+        else:
+            row.append(pre[j - 1] + pre[j])
+    pre = row
+    res.append(row)
+for i in res:
+    print(i)
