@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class MyClass
+{
+    static PriorityQueue<Integer> getAllKthNumber(int arr[],int k)
+    {
+    	PriorityQueue<Integer> min=new PriorityQueue<>(Collections.reverseOrder());
+    	for (int val : arr) 
+    	{
+        	if (min.size()<k)
+        		min.add(val);
+        	else 
+        	{
+        		if (val < min.peek())
+        		{
+        		   min.poll();
+        		   min.add(val);
+        		}
+        	}
+        }
+        return min;
+    }
+    
+    public static void main(String[] args)
+    {
+    	int k = 2;
+    	int arr[] = {10,20,15,5};
+    	System.out.println(getAllKthNumber(arr,k));
+    }
+}
