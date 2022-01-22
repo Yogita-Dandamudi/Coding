@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.*;
 public class MyClass
 {
+    static PriorityQueue<Integer> min;
     static int getAllKthNumber(int arr[],int k)
     {
-    	PriorityQueue<Integer> min=new PriorityQueue<>(Collections.reverseOrder());
     	ArrayList<Integer> ls=new ArrayList<>();
     	for (int val : arr) 
     	{
@@ -30,6 +30,7 @@ public class MyClass
     {
     	int k = 3;
     	int arr[] = {10,20,15,5,22,30,1,11};
+    	min=new PriorityQueue<>(Collections.reverseOrder());
     	System.out.println(getAllKthNumber(arr,k));
     }
 }
